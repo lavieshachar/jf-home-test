@@ -1,15 +1,14 @@
 pipeline{
     agent none
+    options{skipDefaultCheckout()}
     parameters{
         string(name: 'tag', defaultValue: "", description: "The version of petclinic application")
         booleanParam(name: 'upload2artifactory', defaultValue: true, description: 'upload Image to artifactory')
-    }
-    
-    
+    }  
 
     stages{
         stage('checkout'){ 
-            agent {label 'java_build_agent'}
+                agent {label 'java_build_agent'}
             steps{
                 sh "rm -rf spring-petclinic"
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
