@@ -14,13 +14,20 @@ pipeline{
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
             }
         }
-         stage('build and test petclinic'){
+         stage('compile'){
            agent{label 'java_build_agent' }
             steps{
                 dir('spring-petclinic') {
                    sh "./mvnw clean compile"
+                }
+            }
+        }
+        
+        stage('test'){
+           agent{label 'java_build_agent' }
+            steps{
+                dir('spring-petclinic') {
                    sh "./mvnw test"
-                   sh "./mvnw package"
                 }
             }
              
@@ -30,8 +37,17 @@ pipeline{
                 }
             }
         }
+        
+        stage('test'){
+           agent{label 'java_build_agent' }
+            steps{
+                dir('spring-petclinic') {
+                   sh "./mvnw package"
+                }
+            }
+        }
 
-         stage('build dockerFile'){
+        stage('build dockerFile'){
             agent {label 'java_build_agent'}
             steps{
                 dir('spring-petclinic') {
