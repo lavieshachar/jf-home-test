@@ -23,7 +23,15 @@ pipeline{
             }
             steps{
                 dir('spring-petclinic') {
+                   sh "./mvnw clean compile"
+                   sh "./mvnw test"
                    sh "./mvnw package"
+                }
+            }
+             
+             post {
+                always {
+                    junit '**/target/surefire-reports/TEST-*.xml'
                 }
             }
         }
