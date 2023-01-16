@@ -12,7 +12,7 @@ pipeline{
         stage('checkout'){ 
             agent {label 'java_build_agent'}
             steps{
-                sh "rm -rf spring-petclinic"
+                sh "rm -rf *"
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
                 sh "git clone https://github.com/lavieshachar/jf-home-test.git"
             }
@@ -65,7 +65,7 @@ pipeline{
             when { environment name: 'upload2artifactory', value: 'true'}
             agent {label 'java_build_agent'}
             steps {
-                sh "docker image push jfrog_artifactory:5000/petclinic/petclinic:${params.tag}"
+                sh "docker push jfrog_artifactory:5000/petclinic/petclinic:${params.tag}"
             }
         }
     }
