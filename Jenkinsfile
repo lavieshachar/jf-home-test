@@ -25,9 +25,9 @@ pipeline{
             }
             steps{
                 dir('spring-petclinic') {
-                   sh "./mvnw clean compile"
-                   sh "./mvnw test"
-                   sh "./mvnw package"
+                   sh "mvn clean compile"
+                   sh "mvn test"
+                   sh "mvn package"
                 }
             }
              
