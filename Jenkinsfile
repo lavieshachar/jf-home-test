@@ -14,6 +14,7 @@ pipeline{
             steps{
                 sh "rm -rf spring-petclinic"
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
+                sh "git clone https://github.com/lavieshachar/jf-home-test.git"
             }
         }
         
@@ -54,7 +55,7 @@ pipeline{
         stage('build dockerFile'){
             agent {label 'java_build_agent'}
             steps{
-                dir('spring-petclinic') {
+                dir('jf-home-test') {
                     sh "docker build . -t petclinic:${params.tag}"
                 }
             }
