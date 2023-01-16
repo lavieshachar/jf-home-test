@@ -28,13 +28,20 @@ pipeline{
             }
         }
 
-         stage('build and push'){
+         stage('build dockerFile'){
             agent {label 'java_build_agent'}
             steps{
                 dir('spring-petclinic') {
                     sh "docker build petclinic:${params.tag} ."
-                    sh "docker image push jfrog_artifactory:5000/petclinic/petclinic:${params.tag} "
                 }
+            }
+        }
+        
+        stage('push to jf-artifactory'){
+            when  { environment name: 'upload2artifactory', value: 'true'}
+            agent {label 'java_build_agent'}
+            steps{
+                sh "docker image push jfrog_artifactory:5000/petclinic/petclinic:${params.tag} "
             }
         }
     }
