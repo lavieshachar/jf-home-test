@@ -4,8 +4,6 @@ pipeline{
         text(name: 'tag', defaultValue: "", description: "The version of petclinic application")
         booleanParam(name: 'upload2artifactory', defaultValue: true, description: 'upload Image to artifactory')
     }
-    
-    cleanWs() 
 
     stages{
         stage('checkout'){ 
