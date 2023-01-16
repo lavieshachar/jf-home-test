@@ -38,7 +38,7 @@ pipeline{
             }
         }
         
-        stage('test'){
+        stage('package'){
            agent{label 'java_build_agent' }
             steps{
                 dir('spring-petclinic') {
