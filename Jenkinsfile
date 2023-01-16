@@ -1,12 +1,14 @@
 pipeline{
-    agent none //do not run on agent unless I tell you
+    agent none
     parameters{
-        stringParam(name: 'tag', defaultValue: "", description: "The version of petclinic application")
+        text(name: 'tag', defaultValue: "", description: "The version of petclinic application")
+        booleanParam(name: 'upload2artifactory', defaultValue: true, description: 'upload Image to artifactory')
     }
-    cleanWs() //clean work space before new clone
+    
+    cleanWs() 
 
     stages{
-        stage('checkout'){ //clone the pet-clinic project
+        stage('checkout'){ 
             agent {label 'java_build_agent'}
             steps{
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
