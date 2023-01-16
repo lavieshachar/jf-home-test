@@ -4,6 +4,7 @@ pipeline{
     parameters{
         string(name: 'tag', defaultValue: "", description: "The version of petclinic application")
         booleanParam(name: 'upload2artifactory', defaultValue: true, description: 'upload Image to artifactory')
+        booleanParam(name: 'with_tests', defaultValue: true, description: 'run with tests')
     }  
 
     stages{
@@ -27,6 +28,7 @@ pipeline{
         
         stage('test'){
             agent{label 'java_build_agent'}
+            when { environment name: 'with_tests', value: 'true'}
             steps{
                 dir('spring-petclinic') {
                    sh "./mvnw test"
@@ -53,7 +55,7 @@ pipeline{
             agent {label 'java_build_agent'}
             steps{
                 dir('spring-petclinic') {
-                    sh "docker build petclinic:${params.tag} ."
+                    sh "docker build . -t petclinic:${params.tag}"
                 }
             }
         }
