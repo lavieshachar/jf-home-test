@@ -12,6 +12,7 @@ pipeline{
             steps{
                 sh "rm -rf spring-petclinic"
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
+                sh 'mkdir -p .m2/repository'
             }
         }
          stage('build and test petclinic'){
@@ -19,7 +20,7 @@ pipeline{
                 docker{
                     image 'maven:3.6.3-openjdk-11'
                     label 'java_build_agent'
-                    args '-e MAVEN_CONFIG=/root.m2'
+                    args '-e MAVEN_CONFIG=/root.m2 -v $WORKSPACE/.m2/repository:/root/.m2'
                 }
             }
             steps{
