@@ -20,7 +20,7 @@ pipeline{
                 docker{
                     image 'maven:3.6.3-openjdk-11'
                     label 'java_build_agent'
-                    args '-e MAVEN_CONFIG=/root.m2 -v $WORKSPACE/.m2/repository:/root/.m2'
+                    args '-v $WORKSPACE/.m2/repository:/root/.m2'
                 }
             }
             steps{
