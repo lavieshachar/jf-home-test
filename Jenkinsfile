@@ -4,18 +4,18 @@ pipeline{
     parameters{
         string(name: 'tag', defaultValue: "version-xxx", description: "The version of petclinic application")
         booleanParam(name: 'upload2artifactory', defaultValue: true, description: 'upload Image to artifactory')
-        booleanParam(name: 'with_tests', defaultValue: true, description: 'run with tests')
+        booleanParam(name: 'test', defaultValue: true, description: 'run with tests')
     }  
 
     stages{
-        stage('checkout'){ 
+        stage('Checkout'){ 
             steps{
                 sh "rm -rf *"
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
             }
         }
         
-        stage('compile'){
+        stage('Compile'){
             steps{
                 dir('spring-petclinic') {
                    sh "./mvnw clean compile"
@@ -23,22 +23,22 @@ pipeline{
             }
         }
         
-        stage('test'){
-            when { environment name: 'with_tests', value: 'true'}
+        stage('Test'){
+            when { environment name: 'test', value: 'true'}
             steps{
                 dir('spring-petclinic') {
                    sh "./mvnw test"
                 }
             }
              
-             post {
+            post {
                 always {
                     junit '**/target/surefire-reports/TEST-*.xml'
                 }
             }
         }
         
-        stage('package'){
+        stage('Package'){
             steps{
                 dir('spring-petclinic') {
                    sh "./mvnw package"
@@ -54,7 +54,7 @@ pipeline{
             }
         }
         
-        stage('push to jf-artifactory'){
+        stage('Push to jf-artifactory'){
             when { environment name: 'upload2artifactory', value: 'true'}
             steps {
                 sh "docker push jfrog_artifactory:5000/petclinic/petclinic:${params.tag}"
