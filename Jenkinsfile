@@ -1,6 +1,6 @@
 pipeline{
-    agent none
-
+    //agent none
+    agent any
     parameters{
         string(name: 'tag', defaultValue: "", description: "The version of petclinic application")
         booleanParam(name: 'upload2artifactory', defaultValue: true, description: 'upload Image to artifactory')
@@ -10,7 +10,7 @@ pipeline{
     stages{
         
         stage('checkout'){ 
-            agent {label 'java_build_agent'}
+            //agent {label 'java_build_agent'}
             steps{
                 sh "rm -rf *"
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
@@ -19,7 +19,7 @@ pipeline{
         }
         
         stage('compile'){
-            agent {label 'java_build_agent'}
+            //agent {label 'java_build_agent'}
             steps{
                 dir('spring-petclinic') {
                    sh "./mvnw clean compile"
@@ -28,7 +28,7 @@ pipeline{
         }
         
         stage('test'){
-            agent{label 'java_build_agent'}
+            //agent{label 'java_build_agent'}
             when { environment name: 'with_tests', value: 'true'}
             steps{
                 dir('spring-petclinic') {
@@ -44,7 +44,7 @@ pipeline{
         }
         
         stage('package'){
-            agent{label 'java_build_agent'}
+            //agent{label 'java_build_agent'}
             steps{
                 dir('spring-petclinic') {
                    sh "./mvnw package"
@@ -53,7 +53,7 @@ pipeline{
         }
 
         stage('build dockerFile'){
-            agent {label 'java_build_agent'}
+            //agent {label 'java_build_agent'}
             steps{
                 dir('jf-home-test') {
                     sh "docker build . -t petclinic:${params.tag}"
@@ -63,7 +63,7 @@ pipeline{
         
         stage('push to jf-artifactory'){
             when { environment name: 'upload2artifactory', value: 'true'}
-            agent {label 'java_build_agent'}
+            //agent {label 'java_build_agent'}
             steps {
                 sh "docker push jfrog_artifactory:5000/petclinic/petclinic:${params.tag}"
             }
