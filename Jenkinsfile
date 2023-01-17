@@ -13,7 +13,7 @@ pipeline{
                 sh "rm -rf *"
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
                 sh "git clone https://github.com/lavieshachar/jf-home-test.git"
-                sh "mv jf-home-test/Dockerfile spring-petclinic/Dockerfile
+                sh "mv jf-home-test/Dockerfile spring-petclinic/Dockerfile"
             }
         }
         
