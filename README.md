@@ -19,7 +19,7 @@ The source code for the task is [Spring pet-clinic](https://github.com/spring-pr
 Docker service is needed in order to run the project
 
 ### Steps to run the project:
-* docker pull shacharlav10/pet-clinic:version-xxx
+* docker pull shacharlav10/pet-clinic:v1
 * docker container run -d --publish 8080:8080 shacharlav10/pet-clinic:v1
 
 
