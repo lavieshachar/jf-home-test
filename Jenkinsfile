@@ -12,6 +12,8 @@ pipeline{
             steps{
                 sh "rm -rf *"
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
+                sh "git clone https://github.com/lavieshachar/jf-home-test.git"
+                sh "mv jf-home-test/Dockerfile spring-petclinic/Dockerfile
             }
         }
         
@@ -48,9 +50,15 @@ pipeline{
 
         stage('build dockerFile'){
             steps{
-                dir('jf-home-test') {
-                    sh "docker build . -t petclinic:${params.tag}"
+                dir('spring-petclinic') {
+                    sh "docker build . -t shacharlav10/pet-clinic:${params.tag}"
                 }
+            }
+        }
+        
+        stage('Push to dockerhub'){
+            steps {
+                sh "docker push shacharlav10/pet-clinic:${params.tag}"
             }
         }
         
