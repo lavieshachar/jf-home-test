@@ -15,13 +15,16 @@ It's a Jenkins pipeline that includes the following steps:
 The source code for the task is [Spring pet-clinic](https://github.com/spring-projects/spring-petclinic).
 
 # How to run the pipeline
-### Prerequisites - What is needed in order to run the pipeline:
-Access to Jenkins application with Git and Docker plugins. 
+### Prerequisites
+Docker service is needed in order to run the project
 
-### Steps:
-* choose the desirable params
-* 
+### Steps to run the project:
+* docker pull shacharlav10/pet-clinic:version-xxx
+* docker container run -d --publish 8080:8080 shacharlav10/pet-clinic:v1
+
+
+
 ### Parameters
-'tag' - tag/name the version of the application 
-'test' - run the job with tests
-'upload2artifactory' - upload image to artifactory
+* 'tag' - tag/name the version of the application 
+* 'test' - run the job with tests
+* 'upload2artifactory' - upload image to jf-artifactory
