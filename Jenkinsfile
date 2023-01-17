@@ -2,18 +2,16 @@ pipeline{
     
     agent any
     parameters{
-        string(name: 'tag', defaultValue: "", description: "The version of petclinic application")
+        string(name: 'tag', defaultValue: "version-xxx", description: "The version of petclinic application")
         booleanParam(name: 'upload2artifactory', defaultValue: true, description: 'upload Image to artifactory')
         booleanParam(name: 'with_tests', defaultValue: true, description: 'run with tests')
     }  
 
     stages{
-        
         stage('checkout'){ 
             steps{
                 sh "rm -rf *"
                 sh "git clone https://github.com/spring-projects/spring-petclinic.git"
-                sh "git clone https://github.com/lavieshachar/jf-home-test.git"
             }
         }
         
