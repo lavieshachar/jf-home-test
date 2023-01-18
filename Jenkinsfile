@@ -3,7 +3,7 @@ pipeline{
     agent any
     parameters{
         string(name: 'tag', defaultValue: "version-xxx", description: "The version of petclinic application")
-        booleanParam(name: 'upload2artifactory', defaultValue: true, description: 'upload Image to artifactory')
+        booleanParam(name: 'upload2artifactory', defaultValue: false, description: 'upload Image to artifactory')
         booleanParam(name: 'test', defaultValue: true, description: 'run with tests')
     }  
 
