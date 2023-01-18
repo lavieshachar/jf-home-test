@@ -19,6 +19,7 @@ It's a Jenkins pipeline that includes the following steps:
 * Push to jf-artifactory
    
    Store the Docker image in JFrog artifactory.
+   This step will work only after an artifactory will be created.
 
 The source code for the task is [Spring pet-clinic](https://github.com/spring-projects/spring-petclinic).
 
