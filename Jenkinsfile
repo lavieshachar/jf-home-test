@@ -3,7 +3,7 @@ pipeline{
     agent any
     parameters{
         string(name: 'tag', defaultValue: "version-xxx", description: "The version of petclinic application")
-        string(name: 'jfrog_registry', defaultValue: "default_name_jfrog_registry", description: "The jfrog artifactory registry name")
+        string(name: 'jfrog_registry', defaultValue: "default_name_jfrog_registry", description: "JFrog artifactory registry name")
         booleanParam(name: 'upload2artifactory', defaultValue: false, description: 'upload Image to artifactory')
         booleanParam(name: 'test', defaultValue: true, description: 'run with tests')
     }  
