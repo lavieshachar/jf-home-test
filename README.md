@@ -13,6 +13,9 @@ It's a Jenkins pipeline that includes the following steps:
 * Package
   
   package the project as a runnable Docker image
+* Push to dockerhub
+   
+   Store the Docker image in docker hub
 * Push to jf-artifactory
    
    Store the Docker image in JFrog artifactory
