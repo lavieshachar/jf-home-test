@@ -65,7 +65,8 @@ pipeline{
         stage('Push to jf-artifactory'){
             when { environment name: 'upload2artifactory', value: 'true'}
             steps {
-                sh "docker push jfrog_artifactory:5000/petclinic/petclinic:${params.tag}"
+                sh "docker tag shacharlav10/pet-clinic:${params.tag} shacharlav10.jfrog.io/petclinic/petclinic:${params.tag}"
+                sh "docker push shacharlav10.jfrog.io/petclinic/petclinic:${params.tag}"
             }
         }
     }
