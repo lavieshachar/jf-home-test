@@ -3,6 +3,7 @@ pipeline{
     agent any
     parameters{
         string(name: 'tag', defaultValue: "version-xxx", description: "The version of petclinic application")
+        string(name: 'jfrog_registry', defaultValue: "default_name_jfrog_registry", description: "The jfrog artifactory registry name")
         booleanParam(name: 'upload2artifactory', defaultValue: false, description: 'upload Image to artifactory')
         booleanParam(name: 'test', defaultValue: true, description: 'run with tests')
     }  
@@ -65,9 +66,9 @@ pipeline{
         stage('Push to jf-artifactory'){
             when { environment name: 'upload2artifactory', value: 'true'}
             steps {
-                sh "docker login shacharlav10.jfrog.io"
-                sh "docker tag shacharlav10/pet-clinic:${params.tag} shacharlav10.jfrog.io/petclinic/petclinic:${params.tag}"
-                sh "docker push shacharlav10.jfrog.io/petclinic/petclinic:${params.tag}"
+                sh "docker login ${params.jfrog_registry}"
+                sh "docker tag shacharlav10/pet-clinic:${params.tag} ${params.jfrog_registry}/petclinic/petclinic:${params.tag}"
+                sh "docker push ${params.jfrog_registry}/petclinic/petclinic:${params.tag}"
             }
         }
     }
