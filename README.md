@@ -25,7 +25,8 @@ The source code for the task is [Spring pet-clinic](https://github.com/spring-pr
 
 # How to run the pipeline
 ### Prerequisites
-Docker service is needed in order to run the project
+[Docker installed](https://docs.docker.com/get-docker/)
+[JFrog cloud subscription](https://jfrog.com/artifactory/start-free/)
 
 ### Steps to run the project:
 * docker pull shacharlav10/pet-clinic:18.1.22.a
