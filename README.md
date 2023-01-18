@@ -2,15 +2,20 @@
 ### Jenkins Pipeline
 It's a Jenkins pipeline that includes the following steps:
 * Checkout
-  * clone spring-petclinic project 
+   
+   clone spring-petclinic project 
 * Compile
-  * compile the code using mvnw executable file 
+   
+   compile the code using mvnw executable file 
 * Test
-  * run the test and display the result on jenkins summary page
+   
+  run the test and display the result on jenkins summary page
 * Package
-  * package the project as a runnable Docker image
+  
+  package the project as a runnable Docker image
 * Push to jf-artifactory
-  * Store the Docker image in JFrog artifactory
+   
+   Store the Docker image in JFrog artifactory
 
 The source code for the task is [Spring pet-clinic](https://github.com/spring-projects/spring-petclinic).
 
