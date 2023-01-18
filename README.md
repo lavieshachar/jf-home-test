@@ -28,8 +28,8 @@ The source code for the task is [Spring pet-clinic](https://github.com/spring-pr
 * [JFrog cloud subscription](https://jfrog.com/artifactory/start-free/)
 
 ### Steps to run the project:
-* docker pull shacharlav10/pet-clinic:18.1.22.a
-* docker container run -d --publish 8080:8080 shacharlav10/pet-clinic:18.1.22.a
+* docker pull shacharlav10/pet-clinic:version-xxx
+* docker container run -d --publish 8080:8080 shacharlav10/pet-clinic:version-xxx
 
 ### Parameters
 * 'tag' - tag/name the version of the application 
