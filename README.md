@@ -18,15 +18,14 @@ It's a Jenkins pipeline that includes the following steps:
    Store the Docker image in docker hub
 * Push to jf-artifactory
    
-   Store the Docker image in JFrog artifactory.
-   This step will work only after an artifactory will be created.
+   Store the Docker image in the JFrog artifactory that is given by jfrog_registry parameter
 
 The source code for the task is [Spring pet-clinic](https://github.com/spring-projects/spring-petclinic).
 
 # How to run the pipeline
 ### Prerequisites
-[Docker installed](https://docs.docker.com/get-docker/)
-[JFrog cloud subscription](https://jfrog.com/artifactory/start-free/)
+* [Docker installed](https://docs.docker.com/get-docker/)
+* [JFrog cloud subscription](https://jfrog.com/artifactory/start-free/)
 
 ### Steps to run the project:
 * docker pull shacharlav10/pet-clinic:18.1.22.a
@@ -34,5 +33,6 @@ The source code for the task is [Spring pet-clinic](https://github.com/spring-pr
 
 ### Parameters
 * 'tag' - tag/name the version of the application 
+* 'jfrog_registry' - JFrog artifactory registry name
 * 'test' - run the job with tests
 * 'upload2artifactory' - upload image to jf-artifactory
