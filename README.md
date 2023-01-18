@@ -1,4 +1,4 @@
-# Home assinment project
+# Home assignment project
 ### Jenkins Pipeline
 It's a Jenkins pipeline that includes the following steps:
 * Checkout
@@ -27,9 +27,8 @@ The source code for the task is [Spring pet-clinic](https://github.com/spring-pr
 Docker service is needed in order to run the project
 
 ### Steps to run the project:
-* docker pull shacharlav10/pet-clinic:v1
-* docker container run -d --publish 8080:8080 shacharlav10/pet-clinic:v1
-
+* docker pull shacharlav10/pet-clinic:18.1.22.a
+* docker container run -d --publish 8080:8080 shacharlav10/pet-clinic:18.1.22.a
 
 
 ### Parameters
